@@ -10,11 +10,10 @@ const httpServer = require('http').createServer((req, res) => {
 const io = require('socket.io')(httpServer);
 
 io.on('connection', socket => {
-    let counter = 0;
-    setInterval(() => {
-        socket.emit('hello', ++counter);
-    }, 1000);
-});
+    socket.on('hey', data => {
+      console.log('hey', data);
+    });
+  });
 
 httpServer.listen(3000, () => {
   console.log('go to http://localhost:3000');
